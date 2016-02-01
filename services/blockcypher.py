@@ -32,13 +32,13 @@ class Blockcypher(ServiceBase):
         })
         raw_txns = request.json()['txs']
 
-        tx = Tx()
-        txns = []
-        inputs = []
-        outputs = []
-        amount = 0
         for raw_tx in raw_txns:
-
+            tx = Tx()
+            txns = []
+            inputs = []
+            outputs = []
+            amount = 0
+            
             for raw_tx_input in raw_tx['inputs']:
                 tx_input = TxInput(
                     from_address=raw_tx_input['prev_out']['addr'],
