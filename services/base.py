@@ -2,7 +2,7 @@
 class ServiceBase(object):
 
     @classmethod
-    def balance(address, confirmations=0):
+    def balance(cls, address, confirmations=0):
         """
         Returns the amount of satoshis on the address
         with the specified number of confirmations.
@@ -10,13 +10,13 @@ class ServiceBase(object):
         raise NotImplementedError
 
     @classmethod
-    def transactions_for_address(address, confirmations):
+    def transactions_for_address(cls, address, confirmations):
         raise NotImplementedError
 
     @classmethod
-    def send(from, to, private, amount_in_satoshis):
+    def send(cls, from, to, private, amount_in_satoshis):
         raise NotImplementedError
 
     @classmethod
-    def unspents(address, confirmations=0):
+    def unspents(cls, address, confirmations=0):
         raise NotImplementedError
