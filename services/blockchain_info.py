@@ -23,14 +23,12 @@ class BlockchainInfo(ServiceBase):
 
 
     @classmethod
-    def transactions_for_address(cls, address, confirmations):
-        # TODO: handle offsets
-
-        url = cls.URL + "/q/rawaddr/{address}"
+    def transactions_for_address(cls, address, confirmations=0):
+        # TODO: handle offsets and confirmations
+        url = cls.URL + "/es/rawaddr/{address}"
         url = url.format(address=address)
 
         request = requests.get(url, data={
-            'confirmations': confirmations,
             'nonce': time.time(),
             'api_code': ''
         })
