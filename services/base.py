@@ -11,6 +11,9 @@ class ServiceBase(object):
 
     @classmethod
     def transactions_for_address(cls, address, confirmations):
+        """
+        Returns all the Tx related to the address
+        """
         raise NotImplementedError
 
     @classmethod
