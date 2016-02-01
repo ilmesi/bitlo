@@ -3,6 +3,10 @@ class ServiceBase(object):
 
     @classmethod
     def balance(address, confirmations=0):
+        """
+        Returns the amount of satoshis on the address
+        with the specified number of confirmations.
+        """
         raise NotImplementedError
 
     @classmethod
