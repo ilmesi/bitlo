@@ -40,19 +40,19 @@ class BlockchainInfo(ServiceBase):
             inputs = []
             outputs = []
 
-            for raw_tx_output in raw_tx['out']:
-                tx_output = TxOutput(
-                    to_address=raw_tx_output['addr'],
-                    amount=raw_tx_output['value']
-                )
-                ouputs.push(tx_output)
-
             for raw_tx_input in raw_tx['inputs']:
                 tx_input = TxInput(
                     from_address=raw_tx_input['prev_out']['addr'],
                     amount=raw_tx_input['prev_out']['value']
                 )
                 inputs.push(tx_input)
+
+            for raw_tx_output in raw_tx['out']:
+                tx_output = TxOutput(
+                    to_address=raw_tx_output['addr'],
+                    amount=raw_tx_output['value']
+                )
+                ouputs.push(tx_output)
 
             tx.inputs = inputs
             tx.ouputs = ouputs
