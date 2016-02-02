@@ -48,8 +48,8 @@ class Blockcypher(ServiceBase):
 
             for raw_tx_input in raw_tx['inputs']:
                 tx_input = TxInput(
-                    from_address=raw_tx_input['prev_out']['addr'],
-                    amount=raw_tx_input['prev_out']['value']
+                    from_address=raw_tx_input['addresses'][0],
+                    amount=raw_tx_input['output_value']
                 )
                 inputs.append(tx_input)
 
