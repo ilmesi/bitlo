@@ -24,7 +24,7 @@ class ServiceBase(object):
         raise NotImplementedError
 
     @classmethod
-    def send(cls, from, to, private, amount_in_satoshis):
+    def send(cls, from_address, to, private, amount_in_satoshis):
         raise NotImplementedError
 
     @classmethod
