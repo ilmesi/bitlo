@@ -20,6 +20,14 @@ class Blockcypher(ServiceBase):
         })
         return request.json()['balance']
 
+    @classmethod
+    def block_height(cls):
+        url = cls.URL
+
+        request = requests.get(url, data={
+            'token': ''
+        })
+        return request.json()['height']
 
     @classmethod
     def transactions_for_address(cls, address, confirmations=0):
@@ -54,6 +62,7 @@ class Blockcypher(ServiceBase):
 
             tx.inputs = inputs
             tx.ouputs = ouputs
+            tx.confirmations = raw_tx['confirmations']
             tx.tx_hash = raw_tx['hash']
             txns.push(tx)
 

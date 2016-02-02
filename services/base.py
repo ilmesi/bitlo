@@ -10,6 +10,13 @@ class ServiceBase(object):
         raise NotImplementedError
 
     @classmethod
+    def block_height(cls):
+        """
+        Returns the height of the block.
+        """
+        raise NotImplementedError
+
+    @classmethod
     def transactions_for_address(cls, address, confirmations=0):
         """
         Returns all the Tx related to the address

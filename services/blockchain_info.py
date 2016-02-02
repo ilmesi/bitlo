@@ -21,6 +21,15 @@ class BlockchainInfo(ServiceBase):
         })
         return request.json()
 
+    @classmethod
+    def block_height(cls):
+        url = cls.URL + "/q/getblockcount"
+
+        request = requests.get(url, data={
+            'nonce': time.time(),
+            'api_code': ''
+        })
+        return request.json()
 
     @classmethod
     def transactions_for_address(cls, address, confirmations=0):
@@ -33,6 +42,7 @@ class BlockchainInfo(ServiceBase):
             'api_code': ''
         })
         raw_txns = request.json()['txs']
+        current_block_height = cls.block_height()
 
         for raw_tx in raw_txns:
             tx = Tx()
@@ -56,6 +66,7 @@ class BlockchainInfo(ServiceBase):
 
             tx.inputs = inputs
             tx.ouputs = ouputs
+            tx.confirmations = current_block_height - raw_tx['block_height']
             tx.tx_hash = raw_tx['hash']
             txns.push(tx)
 

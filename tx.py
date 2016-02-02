@@ -1,5 +1,6 @@
 class Tx(object):
     tx_hash = ''
+    confirmations = 0
     inputs = []
     outputs = []
 
