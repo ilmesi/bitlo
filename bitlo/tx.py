@@ -4,6 +4,9 @@ class Tx(object):
     inputs = []
     outputs = []
 
+    def __str__(self):
+        return "Tx - {hash}".format(hash=tx_hash)
+
 
 class TxInput(object):
     from_address = ''
