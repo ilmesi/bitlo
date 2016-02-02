@@ -1,6 +1,5 @@
 class Tx(object):
     tx_hash = ''
-    amount = 0
     inputs = []
     outputs = []
 

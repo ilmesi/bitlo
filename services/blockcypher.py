@@ -37,8 +37,7 @@ class Blockcypher(ServiceBase):
             txns = []
             inputs = []
             outputs = []
-            amount = 0
-            
+
             for raw_tx_input in raw_tx['inputs']:
                 tx_input = TxInput(
                     from_address=raw_tx_input['prev_out']['addr'],
@@ -51,13 +50,10 @@ class Blockcypher(ServiceBase):
                     to_address=raw_tx_output['addresses'][0],  # weird list
                     amount=raw_tx_output['value']
                 )
-                if raw_tx_output['addresses'][0] == address:
-                    amount += raw_tx_output['value']
                 ouputs.push(tx_output)
 
             tx.inputs = inputs
             tx.ouputs = ouputs
-            tx.amount = amount
             tx.tx_hash = raw_tx['hash']
             txns.push(tx)
 
