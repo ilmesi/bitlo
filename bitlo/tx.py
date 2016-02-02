@@ -5,7 +5,7 @@ class Tx(object):
     outputs = []
 
     def __str__(self):
-        return "Tx - {hash}".format(hash=tx_hash)
+        return "Tx - {hash}".format(hash=self.tx_hash)
 
 
 class TxInput(object):
