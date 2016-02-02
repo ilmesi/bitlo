@@ -39,10 +39,10 @@ class Blockcypher(ServiceBase):
             'token': ''
         })
         raw_txns = request.json()['txs']
+        txns = []
 
         for raw_tx in raw_txns:
             tx = Tx()
-            txns = []
             inputs = []
             outputs = []
 
@@ -51,19 +51,19 @@ class Blockcypher(ServiceBase):
                     from_address=raw_tx_input['prev_out']['addr'],
                     amount=raw_tx_input['prev_out']['value']
                 )
-                inputs.push(tx_input)
+                inputs.append(tx_input)
 
             for raw_tx_output in raw_tx['outputs']:
                 tx_output = TxOutput(
                     to_address=raw_tx_output['addresses'][0],  # weird list
                     amount=raw_tx_output['value']
                 )
-                ouputs.push(tx_output)
+                outputs.append(tx_output)
 
             tx.inputs = inputs
-            tx.ouputs = ouputs
+            tx.outputs = outputs
             tx.confirmations = raw_tx['confirmations']
             tx.tx_hash = raw_tx['hash']
-            txns.push(tx)
+            txns.append(tx)
 
         return txns

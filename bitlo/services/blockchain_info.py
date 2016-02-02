@@ -43,10 +43,10 @@ class BlockchainInfo(ServiceBase):
         })
         raw_txns = request.json()['txs']
         current_block_height = cls.block_height()
+        txns = []
 
         for raw_tx in raw_txns:
             tx = Tx()
-            txns = []
             inputs = []
             outputs = []
 
@@ -55,19 +55,19 @@ class BlockchainInfo(ServiceBase):
                     from_address=raw_tx_input['prev_out']['addr'],
                     amount=raw_tx_input['prev_out']['value']
                 )
-                inputs.push(tx_input)
+                inputs.append(tx_input)
 
             for raw_tx_output in raw_tx['out']:
                 tx_output = TxOutput(
                     to_address=raw_tx_output['addr'],
                     amount=raw_tx_output['value']
                 )
-                ouputs.push(tx_output)
+                outputs.append(tx_output)
 
             tx.inputs = inputs
-            tx.ouputs = ouputs
+            tx.outputs = outputs
             tx.confirmations = current_block_height - raw_tx['block_height']
             tx.tx_hash = raw_tx['hash']
-            txns.push(tx)
+            txns.append(tx)
 
         return txns
